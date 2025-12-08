@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=4 uid="uid://bcfgys7lqpvhs"]
+
+[ext_resource type="Script" uid="uid://bkrtxkwixljnr" path="res://Scenes/pic_map_settings.gd" id="1_1csx2"]
+[ext_resource type="Texture2D" uid="uid://btlkytaxv31rk" path="res://Assets/test tiles.png" id="1_tekg2"]
+[ext_resource type="Script" uid="uid://dubcqdqdqvljx" path="res://Scripts/clickabletilemaplayer.gd" id="2_12e4n"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_12e4n"]
+texture = ExtResource("1_tekg2")
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_1csx2"]
+sources/0 = SubResource("TileSetAtlasSource_12e4n")
+
+[node name="PicMap" type="Node2D"]
+script = ExtResource("1_1csx2")
+puzzleSize = Vector2i(8, 8)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAEAAEAAAAAAAAAAAADAAEAAAAAAAAAAAACAAEAAAAAAAAAAAABAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAABAAIAAAAAAAAAAAACAAIAAAAAAAAAAAADAAIAAAAAAAAAAAAEAAIAAAAAAAAAAAAEAAMAAAAAAAAAAAADAAMAAAAAAAAAAAACAAMAAAAAAAAAAAABAAMAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAQAAAAAAAAAAAABAAQAAAAAAAAAAAACAAQAAAAAAAAAAAADAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_1csx2")
+script = ExtResource("2_12e4n")
+
+[connection signal="changed" from="TileMapLayer" to="TileMapLayer" method="_on_changed"]
+[connection signal="tile_clicked_left" from="TileMapLayer" to="TileMapLayer" method="_on_tile_clicked_left"]
+[connection signal="tile_clicked_right" from="TileMapLayer" to="TileMapLayer" method="_on_tile_clicked_right"]
